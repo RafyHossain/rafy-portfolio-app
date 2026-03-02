@@ -9,7 +9,7 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'Rafy | Full Stack Web Developer',
-  description: 'Premium Portfolio of Rafy, specializing in modern web development.',
+  description: 'Premium Portfolio | Rafy.',
   icons: {
     icon: "/rafy.png",
   },
