@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import type { Variants } from 'framer-motion';
 import { Typewriter } from 'react-simple-typewriter';
 import { FaChevronRight } from 'react-icons/fa';
 import { HiOutlineCode } from 'react-icons/hi';
@@ -8,7 +9,7 @@ import Image from 'next/image';
 
 export default function Hero() {
 
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -16,12 +17,15 @@ export default function Hero() {
     },
   };
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
+  const itemVariants: Variants = {
+    hidden: { opacity: 0, y: 40 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] }
+      transition: {
+        duration: 0.8,
+        ease: "easeOut",
+      },
     },
   };
 
@@ -39,7 +43,7 @@ export default function Hero() {
                       gap-10 lg:gap-16 
                       items-center">
 
-        {/* ================= LEFT CONTENT ================= */}
+        {/* LEFT CONTENT */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -112,55 +116,15 @@ export default function Hero() {
             I design and develop premium, high-performance web applications that combine clean architecture with modern UI innovation.
           </motion.p>
 
-          {/* CTA Buttons */}
-          <motion.div
-            variants={itemVariants}
-            className="flex flex-wrap gap-4 mt-4"
-          >
-            {/* Primary */}
-            <button
-              onClick={() =>
-                document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })
-              }
-              className="px-6 py-3 rounded-2xl 
-                         bg-gradient-to-r from-primary to-secondary 
-                         text-white font-semibold text-sm 
-                         flex items-center gap-2 
-                         hover:scale-105 transition-all duration-300"
-            >
-              View Projects
-              <FaChevronRight className="group-hover:translate-x-1 transition-transform" />
-            </button>
-
-            {/* Secondary */}
-            <button
-              className="px-6 py-3 rounded-2xl 
-                         border border-white/10 
-                         bg-white/5 
-                         text-slate-300 text-sm 
-                         flex items-center gap-2 
-                         hover:border-primary hover:text-white 
-                         transition-all duration-300"
-            >
-              <HiOutlineCode size={18} />
-              Resume
-            </button>
-          </motion.div>
         </motion.div>
 
-        {/* ================= RIGHT IMAGE ================= */}
+        {/* RIGHT IMAGE */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1 }}
-          className="lg:col-span-5 
-                     flex justify-center 
-                     order-1 lg:order-2"
+          transition={{ duration: 1, ease: "easeOut" }}
+          className="lg:col-span-5 flex justify-center order-1 lg:order-2"
         >
-          {/* Glow */}
-          <div className="absolute w-[200px] h-[200px] bg-primary/30 rounded-full blur-[80px]" />
-          <div className="absolute w-[180px] h-[180px] bg-secondary/30 rounded-full blur-[80px] translate-x-6 translate-y-6" />
-
           <motion.div
             animate={{ y: [-10, 10, -10] }}
             transition={{ repeat: Infinity, duration: 6 }}
