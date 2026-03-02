@@ -1,0 +1,103 @@
+@import "tailwindcss";
+
+@variant dark (&:where(.dark, .dark *));
+
+@plugin "daisyui";
+
+@theme {
+  --animate-blob: blob 10s infinite alternate cubic-bezier(0.4, 0, 0.2, 1);
+  --animate-shimmer: shimmer 2s infinite;
+  --animate-grid: grid-move 15s linear infinite;
+  
+  /* New: Flowing Gradient Animation */
+  --animate-gradient-x: gradient-x 8s ease infinite;
+
+  @keyframes shimmer {
+    100% { transform: translateX(100%); }
+  }
+
+  @keyframes blob {
+    0% { transform: translate(0px, 0px) scale(1) rotate(0deg); }
+    33% { transform: translate(30px, -50px) scale(1.1) rotate(10deg); }
+    66% { transform: translate(-20px, 20px) scale(0.9) rotate(-10deg); }
+    100% { transform: translate(0px, 0px) scale(1) rotate(0deg); }
+  }
+
+  @keyframes grid-move {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(50px); }
+  }
+
+  /* Keyframe for Liquid Gradient Flow */
+  @keyframes gradient-x {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+}
+
+@layer base {
+  :root {
+    --background: 210 50% 98%; 
+    --foreground: 222 84% 4.9%;
+    /* Vibrant Daylight Aurora */
+    --primary: 250 100% 65%;   /* Electric Violet */
+    --secondary: 190 100% 50%; /* Cyan */
+    --accent: 320 100% 60%;    /* Hot Pink */
+    
+    --glass-bg: rgba(255, 255, 255, 0.5);
+    --glass-border: rgba(255, 255, 255, 0.6);
+  }
+
+  .dark {
+    --background: 225 40% 4%;  /* Ultra Deep Space */
+    --foreground: 210 40% 98%;
+    /* Midnight Cyber Aurora */
+    --primary: 260 100% 70%;   /* Neon Purple */
+    --secondary: 180 100% 55%; /* Electric Cyan */
+    --accent: 330 100% 65%;    /* Neon Magenta */
+    
+    --glass-bg: rgba(10, 15, 30, 0.45); 
+    --glass-border: rgba(0, 255, 255, 0.15);
+  }
+
+  body {
+    background-color: transparent; /* 👈 এখানে transparent করে দিয়েছি */
+    color: hsl(var(--foreground));
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+  }
+}
+
+@layer utilities {
+  /* 🌟 Upgraded: Animated Text Gradient */
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[hsl(var(--primary))] via-[hsl(var(--accent))] to-[hsl(var(--secondary))] bg-[length:200%_auto] animate-[gradient-x_6s_ease_infinite];
+  }
+
+  /* 🌟 Upgraded: Animated Button/Badge Gradient */
+  .bg-primary-gradient {
+    @apply bg-gradient-to-r from-[hsl(var(--primary))] via-[hsl(var(--accent))] to-[hsl(var(--secondary))] text-white shadow-[0_0_25px_rgba(var(--color-primary),0.3)] bg-[length:200%_auto] animate-[gradient-x_4s_ease_infinite] transition-transform duration-300;
+  }
+
+  .glass-panel {
+    @apply bg-[var(--glass-bg)] backdrop-blur-xl border border-[var(--glass-border)] shadow-[0_8px_32px_0_rgba(0,0,0,0.3)] rounded-2xl relative overflow-hidden;
+  }
+
+  .perspective-grid-container {
+    perspective: 1200px;
+    transform-style: preserve-3d;
+  }
+  
+  .perspective-grid {
+    background-size: 60px 60px;
+    background-image: 
+      linear-gradient(to right, rgba(0, 255, 255, 0.08) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(0, 255, 255, 0.08) 1px, transparent 1px);
+    transform: rotateX(65deg) translateY(-100px) translateZ(-200px) scale(3);
+  }
+}
+
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: hsl(var(--primary) / 0.5); border-radius: 10px; }
