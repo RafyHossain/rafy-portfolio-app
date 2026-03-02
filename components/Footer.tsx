@@ -34,7 +34,7 @@ export default function Footer() {
               <span className="text-gradient">next big idea?</span>
             </h2>
             <a 
-              href="rafyhossain56@gmail.com" 
+              href="rafyhossain56@gmail" 
               className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-white text-black font-black uppercase tracking-widest text-xs hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(255,255,255,0.2)] transition-all duration-300"
             >
               <FiMail size={16} /> Let&apos;s Connect
